@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public readonly int Speed = Animator.StringToHash(nameof(Speed));
-    public readonly int Attack = Animator.StringToHash(nameof(Attack));
 
     [SerializeField] private float _playerSpeed;
 
@@ -23,8 +22,6 @@ public class PlayerMovement : MonoBehaviour
     {
         float playerGo = 1f;
         float playerStay = 0;
-        bool playerAttack = true;
-        bool playerRest = false;
 
         MovePlayer(playerGo, playerStay);
 
@@ -33,14 +30,6 @@ public class PlayerMovement : MonoBehaviour
             transform.Translate(_zeroMove, _playerSpeed * Time.deltaTime * 3, _zeroMove);
         }
 
-        if (Input.GetKey(KeyCode.Mouse0))
-        {
-            _animator.SetBool(Attack, playerAttack);
-        }
-        else
-        {
-            _animator.SetBool(Attack, playerRest);
-        }
     }
 
     private void MovePlayer(float playerGo, float playerStay)

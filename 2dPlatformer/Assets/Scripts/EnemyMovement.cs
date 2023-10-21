@@ -4,21 +4,23 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
     [SerializeField] private float _speed;
+    [SerializeField] private Player _player;
 
     private SpriteRenderer _flip;
+    private float _seeDistance = 3f;
     private float _direction = -1;
     private float _zeroMove = 0;
+
+    private void Start()
+    {
+        _flip = GetComponent<SpriteRenderer>();
+    }
 
     private void Update()
     {
         bool isFlip = true && _direction > 0;
         _flip.flipX = isFlip;
-        transform.Translate(_speed * _direction * Time.deltaTime, _zeroMove, _zeroMove);
-    }
-
-    private void Start()
-    {
-        _flip = GetComponent<SpriteRenderer>();
+        Move();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -26,6 +28,18 @@ public class EnemyMovement : MonoBehaviour
         if (collision.collider.TryGetComponent(out Obctacle obctacle))
         {
             ChangeDirection();
+        }
+    }
+
+    private void Move()
+    {
+        if (Vector2.Distance(transform.position, _player.transform.position) < _seeDistance)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, _player.transform.position, _speed * Time.deltaTime);
+        }
+        else
+        {
+            transform.Translate(_speed * _direction * Time.deltaTime, _zeroMove, _zeroMove);
         }
     }
 
@@ -39,7 +53,7 @@ public class EnemyMovement : MonoBehaviour
         {
             _direction = 1;
         }
-        
+
         return _direction;
     }
 }

@@ -305,6 +305,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2616fbb058c86c44a8684afa1a552289, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _health: 100
+  _damage: 20
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1427,29 +1429,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1023569108}
-  - component: {fileID: 1023569107}
+  - component: {fileID: 1023569109}
   m_Layer: 0
-  m_Name: MoneySpawner
+  m_Name: First-Aid kit Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1023569107
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1023569106}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1625734a2b6c0cf4f9b64e0aeb7dd818, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _money: {fileID: 1775413643424447180, guid: 680d3ae5457d86348bb395b7b40168da, type: 3}
-  _moneySpawnPositions: {fileID: 1023569108}
-  _moneyRespawnTime: 5
 --- !u!4 &1023569108
 Transform:
   m_ObjectHideFlags: 0
@@ -1468,6 +1455,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1023569109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023569106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1625734a2b6c0cf4f9b64e0aeb7dd818, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _medecine: {fileID: 1775413643424447180, guid: 680d3ae5457d86348bb395b7b40168da, type: 3}
+  _medecineSpawnPositions: {fileID: 1023569108}
+  _medecineRespawnTime: 10
 --- !u!1 &1518175357
 GameObject:
   m_ObjectHideFlags: 0
@@ -1552,6 +1554,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3023346043638253654, guid: e5f7f332a0073a04d98e1ea11e4bdc6f, type: 3}
+      propertyPath: _health
+      value: 70
+      objectReference: {fileID: 0}
     - target: {fileID: 7472564265273106950, guid: e5f7f332a0073a04d98e1ea11e4bdc6f, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -1596,6 +1602,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7472564265273106951, guid: e5f7f332a0073a04d98e1ea11e4bdc6f, type: 3}
+      propertyPath: _player
+      value: 
+      objectReference: {fileID: 75160097}
+    - target: {fileID: 7472564265273106951, guid: e5f7f332a0073a04d98e1ea11e4bdc6f, type: 3}
+      propertyPath: _playerPozition
+      value: 
+      objectReference: {fileID: 75160097}
     - target: {fileID: 7472564265273106973, guid: e5f7f332a0073a04d98e1ea11e4bdc6f, type: 3}
       propertyPath: m_Name
       value: Enemy 2
@@ -1653,6 +1667,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7472564265273106951, guid: e5f7f332a0073a04d98e1ea11e4bdc6f, type: 3}
+      propertyPath: _player
+      value: 
+      objectReference: {fileID: 75160097}
+    - target: {fileID: 7472564265273106951, guid: e5f7f332a0073a04d98e1ea11e4bdc6f, type: 3}
+      propertyPath: _playerPozition
+      value: 
+      objectReference: {fileID: 75160097}
     - target: {fileID: 7472564265273106973, guid: e5f7f332a0073a04d98e1ea11e4bdc6f, type: 3}
       propertyPath: m_Name
       value: Enemy 1

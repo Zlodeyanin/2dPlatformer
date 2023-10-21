@@ -1,11 +1,11 @@
 using System.Collections;
 using UnityEngine;
 
-public class MoneySpawner : MonoBehaviour
+public class MedecineSpawner : MonoBehaviour
 {
-    [SerializeField] private Money _money;
-    [SerializeField] private Transform _moneySpawnPositions;
-    [SerializeField] private float _moneyRespawnTime;
+    [SerializeField] private Medecine _medecine;
+    [SerializeField] private Transform _medecineSpawnPositions;
+    [SerializeField] private float _medecineRespawnTime;
 
     private Transform[] _spawnPoints;
     private Coroutine _spawner;
@@ -13,11 +13,11 @@ public class MoneySpawner : MonoBehaviour
 
     private void Start()
     {
-        _spawnPoints = new Transform[_moneySpawnPositions.childCount];
+        _spawnPoints = new Transform[_medecineSpawnPositions.childCount];
 
-        for (int i = 0; i < _moneySpawnPositions.childCount; i++)
+        for (int i = 0; i < _medecineSpawnPositions.childCount; i++)
         {
-            _spawnPoints[i] = _moneySpawnPositions.GetChild(i);
+            _spawnPoints[i] = _medecineSpawnPositions.GetChild(i);
         }
 
         StartSpawnEnemies();
@@ -27,7 +27,7 @@ public class MoneySpawner : MonoBehaviour
     {
         if (_spawnPoints.Length > 0)
         {
-            _spawner = StartCoroutine(SpawnMoneys());
+            _spawner = StartCoroutine(SpawnFirtsAidBox());
         }
         else
         {
@@ -36,9 +36,9 @@ public class MoneySpawner : MonoBehaviour
         }
     }
 
-    private IEnumerator SpawnMoneys()
+    private IEnumerator SpawnFirtsAidBox()
     {
-        WaitForSeconds respawnTime = new WaitForSeconds(_moneyRespawnTime);
+        WaitForSeconds respawnTime = new WaitForSeconds(_medecineRespawnTime);
         int spawnPointsMaxIndex = _spawnPoints.Length;
         int spawmPointsMinIndex = 0;
         _isSpawning = true;
@@ -46,7 +46,7 @@ public class MoneySpawner : MonoBehaviour
         while (_isSpawning)
         {
             int index = Random.Range(spawmPointsMinIndex, spawnPointsMaxIndex);
-            Instantiate(_money.gameObject, _spawnPoints[index].transform);
+            Instantiate(_medecine.gameObject, _spawnPoints[index].transform);
             yield return respawnTime;
         }
     }
