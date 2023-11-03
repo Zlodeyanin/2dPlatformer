@@ -4,7 +4,7 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
     [SerializeField] private float _speed;
-    [SerializeField] private Player _player;
+    [SerializeField] private PlayerHealth _player;
 
     private SpriteRenderer _flip;
     private float _seeDistance = 3f;
