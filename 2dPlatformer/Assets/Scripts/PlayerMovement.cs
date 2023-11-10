@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Animator _animator;
     private float _zeroMove = 0;
+    private float _playerGo = 1f;
     private SpriteRenderer _flip;
 
     private void Start()
@@ -20,10 +21,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        float playerGo = 1f;
-        float playerStay = 0;
-
-        MovePlayer(playerGo, playerStay);
+        MovePlayer();
 
         if (Input.GetKey(KeyCode.Space))
         {
@@ -32,23 +30,23 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    private void MovePlayer(float playerGo, float playerStay)
+    private void MovePlayer()
     {
         if (Input.GetKey(KeyCode.A))
         {
             _flip.flipX = true;
             transform.Translate(_playerSpeed * Time.deltaTime * -1, _zeroMove, _zeroMove);
-            _animator.SetFloat(Speed, playerGo);
+            _animator.SetFloat(Speed, _playerGo);
         }
         else if (Input.GetKey(KeyCode.D))
         {
             _flip.flipX = false;
             transform.Translate(_playerSpeed * Time.deltaTime, _zeroMove, _zeroMove);
-            _animator.SetFloat(Speed, playerGo);
+            _animator.SetFloat(Speed, _playerGo);
         }
         else
         {
-            _animator.SetFloat(Speed, playerStay);
+            _animator.SetFloat(Speed, _zeroMove);
         }
     }
 }

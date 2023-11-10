@@ -1,19 +1,22 @@
 using UnityEngine;
 
-public class EnemyHealth : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
     [SerializeField] private int _health;
-
-    private void Update()
+    [SerializeField] private int _damage;
+    
+    public void TakeDamage(int damage)
     {
+        _health -= damage;
+        
         if(_health <= 0)
         {
             Destroy(gameObject);
         }
     }
 
-    public void TakeDamage(int damage)
+    public int Attack()
     {
-        _health -= damage;
+        return _damage;
     }
 }

@@ -10,7 +10,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private int _damage;
 
     private PlayerHealth _player;
-    private EnemyHealth _enemy;
+    private Enemy _enemy;
     private Animator _animator;
     private Coroutine _battle;
     private bool _isBattle;
@@ -21,27 +21,24 @@ public class PlayerAttack : MonoBehaviour
         _player= GetComponent<PlayerHealth>();
     }
 
-    private void Update()
-    {
-        _animator.SetBool(Attack, _isBattle);
-    }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.TryGetComponent(out EnemyHealth enemy))
+        if (collision.collider.TryGetComponent(out Enemy enemy))
         {
             _enemy = enemy;
             _isBattle = true;
             _battle = StartCoroutine(Battle());
+            _animator.SetBool(Attack, _isBattle);
         }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.collider.TryGetComponent(out EnemyHealth enemy))
+        if (collision.collider.TryGetComponent(out Enemy enemy))
         {
             _isBattle = false;
             StopCoroutine(_battle);
+            _animator.SetBool(Attack, _isBattle);
         }
     }
 
@@ -52,7 +49,7 @@ public class PlayerAttack : MonoBehaviour
         while (_isBattle)
         {
             _enemy.TakeDamage(_damage);
-            _enemy.TryGetComponent(out EnemyAttack enemyAttack);
+            _enemy.TryGetComponent(out Enemy enemyAttack);
             _player.TakeDamage(enemyAttack.Attack());
             yield return rechargeAttack;
         }
